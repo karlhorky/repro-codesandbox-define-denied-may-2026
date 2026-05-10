@@ -88,8 +88,9 @@
         This page reproduces
         <a href="https://github.com/codesandbox/codesandbox-client/issues/8876"
           >codesandbox-client issue 8876</a
-        >. The iframe below should load a new CodeSandbox embed, but Chrome
-        shows <code>codesandbox.io refused to connect</code>.
+        >. The iframe below should load a CodeSandbox define embed for an
+        <code>index.html</code> file containing only <code>hello</code>, but
+        Chrome shows <code>codesandbox.io refused to connect</code>.
       </p>
       <p>
         Open DevTools to verify the failing request. The expected regression
@@ -101,15 +102,16 @@
         <div class="card-header">
           <p>
             <strong>Embedded URL:</strong>
-            <a href="https://codesandbox.io/embed/new?codemirror=1"
-              >https://codesandbox.io/embed/new?codemirror=1</a
+            <a
+              href="https://codesandbox.io/api/v1/sandboxes/define?embed=1&parameters=N4IgZglgNgpgziAXKCA7AJjAHgOgBYAuAtlEqAMYD2qBMNSIeMUUlAOqiADQgRwBCaAIYAnAJ5IwQqHBgBfBUA"
+              >https://codesandbox.io/api/v1/sandboxes/define?embed=1&parameters=N4IgZglgNgpgziAXKCA7AJjAHgOgBYAuAtlEqAMYD2qBMNSIeMUUlAOqiADQgRwBCaAIYAnAJ5IwQqHBgBfBUA</a
             >
           </p>
           <p><strong>Expected:</strong> interactive sandbox</p>
           <p><strong>Actual:</strong> refused iframe connection</p>
         </div>
         <iframe
-          src="https://codesandbox.io/embed/new?codemirror=1"
+          src="https://codesandbox.io/api/v1/sandboxes/define?embed=1&parameters=N4IgZglgNgpgziAXKCA7AJjAHgOgBYAuAtlEqAMYD2qBMNSIeMUUlAOqiADQgRwBCaAIYAnAJ5IwQqHBgBfBUA"
           title="CodeSandbox embed reproduction"
           sandbox="allow-downloads allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
         ></iframe>
