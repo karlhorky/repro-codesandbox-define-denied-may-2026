@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CodeSandbox Embed Denied Reproduction</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family:
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        background: #f5f2ea;
+        color: #1f2933;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      main {
+        width: min(1100px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 40px 0;
+      }
+
+      h1 {
+        margin: 0 0 12px;
+        font-size: clamp(2rem, 5vw, 4rem);
+        line-height: 1;
+      }
+
+      p {
+        max-width: 760px;
+        margin: 0 0 16px;
+        font-size: 1.0625rem;
+        line-height: 1.55;
+      }
+
+      code {
+        border-radius: 4px;
+        background: #e6dfd1;
+        padding: 0.125rem 0.25rem;
+      }
+
+      a {
+        color: #0f5f77;
+      }
+
+      .card {
+        margin-top: 24px;
+        overflow: hidden;
+        border: 1px solid #d2c8b6;
+        border-radius: 12px;
+        background: #fffaf0;
+        box-shadow: 0 24px 60px rgb(31 41 51 / 12%);
+      }
+
+      .card-header {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 16px;
+        justify-content: space-between;
+        border-bottom: 1px solid #d2c8b6;
+        padding: 16px;
+      }
+
+      .card-header p {
+        margin: 0;
+      }
+
+      iframe {
+        display: block;
+        width: 100%;
+        height: min(70vh, 600px);
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>CodeSandbox iframe embed denied</h1>
+      <p>
+        This page reproduces
+        <a href="https://github.com/codesandbox/codesandbox-client/issues/8876"
+          >codesandbox-client issue 8876</a
+        >. The iframe below should load a new CodeSandbox embed, but Chrome
+        shows <code>codesandbox.io refused to connect</code>.
+      </p>
+      <p>
+        Open DevTools to verify the failing request. The expected regression
+        signals are a <code>403</code> response and
+        <code>X-Frame-Options: sameorigin</code>.
+      </p>
+
+      <section class="card" aria-label="CodeSandbox embed reproduction">
+        <div class="card-header">
+          <p>
+            <strong>Embedded URL:</strong>
+            <a href="https://codesandbox.io/embed/new?codemirror=1"
+              >https://codesandbox.io/embed/new?codemirror=1</a
+            >
+          </p>
+          <p><strong>Expected:</strong> interactive sandbox</p>
+          <p><strong>Actual:</strong> refused iframe connection</p>
+        </div>
+        <iframe
+          src="https://codesandbox.io/embed/new?codemirror=1"
+          title="CodeSandbox embed reproduction"
+          sandbox="allow-downloads allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+        ></iframe>
+      </section>
+    </main>
+  </body>
+</html>
